@@ -25,6 +25,8 @@ class SaleOrder(models.Model):
             line2.product_uom_change()
             line2._onchange_discount()
             line.write({
+                'currency_id': line2.currency_id.id,
+                'company_id': line2.company_id.id,
                 'price_unit': line2.price_unit,
                 'discount': line2.discount,
             })

@@ -17,9 +17,9 @@ class SaleOrder(models.Model):
         for line in self.mapped('order_line'):
             dict = line._convert_to_write(line.read()[0])
             if 'product_tmpl_id' in line._fields:
-                dict['product_tmpl_id'] = line.product_tmpl_id
-            dict['currency_id'] = currency_id
-            dict['company_id'] = company_id
+                dict['product_tmpl_id'] = line.product_tmpl_id.id
+            dict['currency_id'] = currency_id.id
+            dict['company_id'] = company_id.id
             line2 = self.env['sale.order.line'].new(dict)
             # we make this to isolate changed values:
             line2.product_uom_change()
